@@ -4,7 +4,7 @@
 >
 > Four domains → individual techniques → technical notes → practical labs → full app compromise.
 
-> [⬅ My Hacking Hub](https://github.com/romeo-mhakayakora/CPTS) · [🤖 AI-Hacking](https://github.com/romeo-mhakayakora/AI-Hacking) · [🔌 API-Hacking](https://github.com/romeo-mhakayakora/API-Hacking)
+> [⬅ My Hacking Hub](https://github.com/romeo-mhakayakora/Hacking-Hub) · [🤖 AI-Hacking](https://github.com/romeo-mhakayakora/AI-Hacking) · [🔌 API-Hacking](https://github.com/romeo-mhakayakora/API-Hacking)
 
 ---
 
