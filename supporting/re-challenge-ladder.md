@@ -29,12 +29,12 @@ Set up a rooted emulator (Android Studio AVD) or a spare test phone, plus ADB, J
 
 **Goal:** find entry points, hardcoded secrets, validation logic and weak crypto without running anything.
 
-- **CTFlearn: Basic Android RE 1** (easy, 5,350 solves). Files: ctflearn.com/challenge/962. Writeup: RemusDBD (finds an MD5 check in JADX).
+- **CTFlearn: Basic Android RE 1** (easy, 5,350 solves). Files: [ctflearn.com/challenge/962](https://ctflearn.com/challenge/962). Writeup: RemusDBD (finds an MD5 check in JADX).
 - **picoGym: droids0 and droids1.** Site: picoGym (search for droids0 and droids1; I did not get a direct URL). Guide with both solved: NUS Greyhats, Introduction to Android App Reversing.
 - **DroidDump** (beginner: resources and static analysis). Site: Learn SecByte CTF, the platform behind this walkthrough.
-- **Silent Data Exfiltration: WayneSecure, GothamConnect, SystemMonitor (2026).** Files: no direct link found. Writeup (names the three APKs): rehutalwar.com.
+- **Silent Data Exfiltration: WayneSecure, GothamConnect, SystemMonitor (2026).** Files: no direct link found. Writeup (names the three APKs): [rehutalwar.com](https://rehutalwar.com).
 - **GDG CTF 2026: Food.** Files: no direct link found. Writeup: GDG CTF 2026 writeup.
-- **OWASP UnCrackable L1.** Files: mas.owasp.org/crackmes/Android. Do it with JADX only first, then read these, which each use a different method:
+- **OWASP UnCrackable L1.** Files: [mas.owasp.org/crackmes/Android](https://mas.owasp.org/crackmes/Android). Do it with JADX only first, then read these, which each use a different method:
   - tksec: JADX, smali patching and Frida
   - cygnus: smali patching and objection
   - pentest.co.uk: Frida root-detection bypass
@@ -49,18 +49,18 @@ Set up a rooted emulator (Android Studio AVD) or a spare test phone, plus ADB, J
 
 **Goal:** move from "where is the password" to "how does this app actually work". Cover exported components, intents, insecure storage, WebViews, logcat leaks, and traffic interception with Burp. Do one apktool patch, rebuild, sign and install exercise, and write one short pentest report.
 
-- **OneList** (10 flags, beginner to expert). Files: github.com/cywr/android-re-ctfs. The repo accepts community writeups, so check it for existing ones.
-- **DIVA (Damn Insecure and Vulnerable App).** Files: payatu/diva-android (source; the README also points to a debug APK download). A prebuilt APK copy is at 0xArab/diva-apk-file.
-- **MASTG Hacking Playground.** Files: OWASP/MASTG-Hacking-Playground (Java and Kotlin apps). Other MASTG reference apps are on the index page.
-- **InsecureShop.** Files: hax0rgb/InsecureShop.
+- **OneList** (10 flags, beginner to expert). Files: [github.com/cywr/android-re-ctfs](https://github.com/cywr/android-re-ctfs). The repo accepts community writeups, so check it for existing ones.
+- **DIVA (Damn Insecure and Vulnerable App).** Files: [payatu/diva-android](https://github.com/payatu/diva-android) (source; the README also points to a debug APK download). A prebuilt APK copy is at [0xArab/diva-apk-file](https://github.com/0xArab/diva-apk-file).
+- **MASTG Hacking Playground.** Files: [OWASP/MASTG-Hacking-Playground](https://github.com/OWASP/MASTG-Hacking-Playground) (Java and Kotlin apps). Other MASTG reference apps are on the index page.
+- **InsecureShop.** Files: [hax0rgb/InsecureShop](https://github.com/hax0rgb/InsecureShop).
 - **AndroGoat, InjuredAndroid, Damn Vulnerable Bank, OVAA, Vuldroid, InsecureBankv2.** I did not get direct download pages; find all of them in the awesome-vulnerable-apps list.
-- **KGB Messenger** (Alerts, Login, Social Engineering; solve in order). Files: tlamb96/kgb_messenger. Its README links the APK download, a video lecture from George Mason University's MasonCC club and a video walkthrough with timestamps.
-- **MobileReversing walkthrough repo** with a suggested order (RagingRock, DIVA, InjuredAndroid, InsecureShop, Frida Labs, hpAndro): sam-mg/MobileReversing.
-- **Mobile Hacking Lab.** Site: Corellium training page for Mobile Hacking Lab (a free Android userland exploitation teaser lab; registration required). Writeups to check your work: mehmetfarisacar/Mobile-Hacking-Lab-Writeups.
-- **8kSec free mobile labs** (2025, includes 10 Android challenges). Site: 8ksec.io/battle. I have not found writeups for them.
-- **HacktivityCon CTF Mobile (MobileOne, Pinocchio).** Files: mobile_one.apk. Writeup: goggleheadedhacker.com. Pinocchio uses mitmproxy, so it doubles as a first traffic-interception exercise.
+- **KGB Messenger** (Alerts, Login, Social Engineering; solve in order). Files: [tlamb96/kgb_messenger](https://github.com/tlamb96/kgb_messenger). Its README links the APK download, a video lecture from George Mason University's MasonCC club and a video walkthrough with timestamps.
+- **MobileReversing walkthrough repo** with a suggested order (RagingRock, DIVA, InjuredAndroid, InsecureShop, Frida Labs, hpAndro): [sam-mg/MobileReversing](https://github.com/sam-mg/MobileReversing).
+- **Mobile Hacking Lab.** Site: Corellium training page for Mobile Hacking Lab (a free Android userland exploitation teaser lab; registration required). Writeups to check your work: [mehmetfarisacar/Mobile-Hacking-Lab-Writeups](https://github.com/mehmetfarisacar/Mobile-Hacking-Lab-Writeups).
+- **8kSec free mobile labs** (2025, includes 10 Android challenges). Site: [8ksec.io/battle](https://8ksec.io/battle). I have not found writeups for them.
+- **HacktivityCon CTF Mobile (MobileOne, Pinocchio).** Files: mobile_one.apk. Writeup: [goggleheadedhacker.com](https://goggleheadedhacker.com). Pinocchio uses mitmproxy, so it doubles as a first traffic-interception exercise.
 - **BdSecCTF 2025: Hacker App.** Files: no direct link found. Writeup: 0x0meowsec (custom encoding chain: XOR, TEA, byte table, Base64).
-- **Securinets Friendly CTF 2025, mobile folder.** Files: securinets-insat/Friendly-CTF-2025. I found no mobile writeups yet. I could not verify a 2026 edition or a count of 17 mobile challenges.
+- **Securinets Friendly CTF 2025, mobile folder.** Files: [securinets-insat/Friendly-CTF-2025](https://github.com/securinets-insat/Friendly-CTF-2025). I found no mobile writeups yet. I could not verify a 2026 edition or a count of 17 mobile challenges.
 
 ---
 
@@ -69,8 +69,8 @@ Set up a rooted emulator (Android Studio AVD) or a spare test phone, plus ADB, J
 **Goal:** hook methods, bypass root and Frida detection, dump keys at runtime, and call hidden methods.
 
 - Redo **UnCrackable L1 with Frida** using the tksec and pentest.co.uk writeups from Stage 1.
-- **UnCrackable L2** (Java plus a small native part). Files: mas.owasp.org/crackmes/Android.
-- **PwnSec CTF 2025: CuteFrida, RudeFrida, FreakyFrida.** All three are designed for Frida; RudeFrida needs library reversing plus root and Frida detection bypass. Event site: pwnsec.ctf.ae and CTFtime event 2906. I found no direct file links, so check those two pages. Writeups:
+- **UnCrackable L2** (Java plus a small native part). Files: [mas.owasp.org/crackmes/Android](https://mas.owasp.org/crackmes/Android).
+- **PwnSec CTF 2025: CuteFrida, RudeFrida, FreakyFrida.** All three are designed for Frida; RudeFrida needs library reversing plus root and Frida detection bypass. Event site: [pwnsec.ctf.ae](https://pwnsec.ctf.ae) and CTFtime event 2906. I found no direct file links, so check those two pages. Writeups:
   - bi0s: RudeFrida
   - Handoumeh: RudeFrida
   - zeroflag: RudeFrida
@@ -87,20 +87,20 @@ Set up a rooted emulator (Android Studio AVD) or a spare test phone, plus ADB, J
 Prepare first: learn JNI and ELF basics and practice Ghidra on small binaries. Learn ARM64 instructions as Ghidra shows them to you, starting with function calls, loops, and XOR.
 
 - **MASTG chapter: Reverse Engineering and Tampering** (native libraries, JNIEnv, disassembly). Read it.
-- **UMassCTF 2024: Free Delivery** (medium; malware obfuscation, static and dynamic analysis, native library). Event site: umasscybersec.org; I found no direct file link. Writeups: powalll on GitHub and a short solution on CTFtime (base64 plus XOR in Java, then a XOR-0x55 string in libfreedelivery.so).
-- **IntechCTF Android category** (flag, JNI, OAT, reflection, sign). Files: the writeup credits aimardcr as problem setter and says the challenges are on a repository; I found only his profile, github.com/aimardcr, so look there. Writeups: Part 1 and Part 2: Game. Medium may paywall these.
+- **UMassCTF 2024: Free Delivery** (medium; malware obfuscation, static and dynamic analysis, native library). Event site: [umasscybersec.org](https://umasscybersec.org); I found no direct file link. Writeups: powalll on GitHub and a short solution on CTFtime (base64 plus XOR in Java, then a XOR-0x55 string in libfreedelivery.so).
+- **IntechCTF Android category** (flag, JNI, OAT, reflection, sign). Files: the writeup credits aimardcr as problem setter and says the challenges are on a repository; I found only his profile, [github.com/aimardcr](https://github.com/aimardcr), so look there. Writeups: Part 1 and Part 2: Game. Medium may paywall these.
 - **UMass CTF 2026: Android ARM64** (medium-hard; stripped ARM64 library liblegocore.so, dynamic JNI registration, a custom VM, red herrings). Files: the pwn.college CTF archive for UMassCTF 2026 lists the challenge zips (for example lego-clicker.zip); I did not confirm which one is the Android challenge. Writeup: Wa3r on Medium.
-- **Nullcon Goa 2023 workshop: ARM-ing for Android.** An intro to ARM assembly plus four Android apps. This is the workshop description, not a download: nullcon.net.
+- **Nullcon Goa 2023 workshop: ARM-ing for Android.** An intro to ARM assembly plus four Android apps. This is the workshop description, not a download: [nullcon.net](https://nullcon.net).
 - **CTFlearn: Android, run!** (hard, 140 points). Files: challenge page. The APK is on a mega.nz link there that may have expired.
 
 ---
 
 ## Stage 5: Real CTF-level and modern targets
 
-- **CyberTruck Challenge 2019** (NowSecure; keyless car app; Jadx, Frida, APKTool and Ghidra across Java and native layers). Files: nowsecure/cybertruckchallenge19. Background: NowSecure page. Writeup: user1342 on GitHub.
-- **Google CTF 2020: Android.** Files: google/google-ctf, 2020 quals reversing-android. Writeup: luker983.
+- **CyberTruck Challenge 2019** (NowSecure; keyless car app; Jadx, Frida, APKTool and Ghidra across Java and native layers). Files: [nowsecure/cybertruckchallenge19](https://github.com/nowsecure/cybertruckchallenge19). Background: NowSecure page. Writeup: user1342 on GitHub.
+- **Google CTF 2020: Android.** Files: [google/google-ctf](https://github.com/google/google-ctf), 2020 quals reversing-android. Writeup: luker983.
 - **Google CTF 2017: Food** (native code in libcook.so; old and hard for its era). Files and writeup together: CTFtime writeup 6870 (its folder lists food.apk).
-- **FamPay CTF 2026** (APK plus web target; native library, Firebase, cloud instance). Site: ctf.fampay.co, which may be offline. Writeup: bhatsupshubham on Medium. I found no standalone APK link.
+- **FamPay CTF 2026** (APK plus web target; native library, Firebase, cloud instance). Site: [ctf.fampay.co](https://ctf.fampay.co), which may be offline. Writeup: bhatsupshubham on Medium. I found no standalone APK link.
 - **SECCON 2015: Reverse-Engineering Android APK 2** (hard; includes a server-side SQL injection part, so it may not run today). Writeup: CTFtime writeup 3394. Optional.
 - More classic challenge files, from the awesome-mobile-ctf lists: Trend Micro CTF 2020 Keybox.apk, DEF CON 2019 quals Matryoshka-style challenge, THC CTF 2018 Android serial and a collection of Android reversing challenges.
 
@@ -137,7 +137,7 @@ Once you give me a stage, I can search for videos for that stage specifically.
 - awesome-mobile-ctf: Google CTF 2020 and 2021, HacktivityCon, STACK the Flags 2020, BSidesSF 2018, SharifCTF and more.
 - awesome-android-security: Hacker101 Android, Rednaga challenges and crackme collections.
 - The Mobile CTF Lab: updated 2024 list of CTFs, writeups and vulnerable apps.
-- pentest-bi0s/Mobile-CTFs on GitHub: described as Android and iOS mobile CTF challenges and writeups from 2025 onwards. I saw the repo name but not a direct URL, so search GitHub for it.
+- [pentest-bi0s/Mobile-CTFs](https://github.com/pentest-bi0s/Mobile-CTFs) on GitHub: described as Android and iOS mobile CTF challenges and writeups from 2025 onwards. I saw the repo name but not a direct URL, so search GitHub for it.
 
 ---
 
