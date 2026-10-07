@@ -1,350 +1,153 @@
-# Android Reverse Engineering — Challenge Ladder
+# Android Offensive Security & Reverse Engineering Roadmap
 
 > [⬅ Domain](./README.md) | [🏠 Dashboard](../README.md)
 
-**Status:** ⬜ Not Started
+**Status:** 🔄 In Progress
 
-Use a **progressive challenge ladder** where each stage introduces one new skill. Do not jump between dozens of apps.
-
----
-
-## 🟢 PHASE 1 — Learn to read APKs with JADX
-
-**Goal:** Become comfortable opening an APK and understanding how the application works without tutorials.
-
-| Order | Challenge | Main tool |
-|---|---|---|
-| 1 | **OWASP UnCrackable L1** | JADX |
-| 2 | **BPVA Challenge 0** | JADX |
-| 3 | **VulnDroid 1–3** | JADX + ADB |
-| 4 | **Android CrackMe Challenge 5** | JADX |
-| 5 | **OneList — beginner flags** | JADX |
-
-**Do not use Frida yet.**
-
-Learn to find:
-
-- `MainActivity`
-- interesting classes
-- strings
-- hardcoded secrets
-- password checks
-- flag validation
-- `if` conditions
-- cryptographic functions
-- AndroidManifest
-- resources
-- SharedPreferences
-- SQLite
-
-Your basic workflow should become:
-
-```text
-APK
- ↓
-JADX
- ↓
-AndroidManifest
- ↓
-MainActivity
- ↓
-Follow method calls
- ↓
-Find validation logic
- ↓
-Understand condition
- ↓
-Recover flag/secret
-```
+A staged path from your first APK to hard native and protected apps. Every link below appeared in my searches. For each challenge I give a Files link (the download or repo) when I found one, and otherwise the event or platform site; I have not downloaded every file, so check each APK link before planning around it. Anything I could not verify is marked as such.
 
 ---
 
-## 🟡 PHASE 2 — Android internals
+## How to use this roadmap
 
-Once you're comfortable with JADX:
-
-### 6. Android CrackMe Challenges 1–4
-
-Then:
-
-### 7. DIVA
-
-### 8. AndroGoat
-
-### 9. InsecureBankv2
-
-### 10. MASTG Hacking Playground
-
-Now start learning:
-
-```text
-JADX
-ADB
-Logcat
-AndroidManifest
-Activities
-Services
-Broadcast Receivers
-Content Providers
-Intents
-SharedPreferences
-SQLite
-External storage
-```
-
-The objective changes from:
-
-> "Where is the password?"
-
-to:
-
-> **"How does this Android application actually work?"**
+- You already program, so skip language study. Your learning curve is Android concepts and tooling, not syntax.
+- For every challenge: open it in JADX, spend 60 to 90 minutes alone, write down a hypothesis, try to solve it, and only then read a writeup. Re-solve it yourself and write 2 or 3 sentences on why the solution worked.
+- Keep a GitHub repo with one folder per challenge: notes.md, screenshots, solution.md.
+- Map each finding to an OWASP MASTG test case.
+- Add Frida early as a small tool (hook one method, print arguments, change a return value). Add Ghidra and ARM64 only when you reach native code.
+- Put Burp or mitmproxy in before Stage 3, because most real mobile pentesting is network and API testing.
 
 ---
 
-## 🟠 PHASE 3 — Dynamic analysis
+## Stage 0: Tooling (1 to 2 days)
 
-Now introduce **Frida**.
-
-### 11. OWASP UnCrackable L2
-
-Don't immediately look at the solution.
-
-Try:
-
-```text
-JADX
- ↓
-understand Java/Kotlin
- ↓
-identify native/JNI component
- ↓
-ADB
- ↓
-observe application
- ↓
-Frida
- ↓
-hook interesting function
- ↓
-recover secret
-```
-
-Then:
-
-### 12. OWASP UnCrackable L3
-
-This is where you'll start encountering more serious anti-analysis.
-
-Then:
-
-### 13. BPVA advanced challenges
-
-Now combine:
-
-**JADX + Apktool + Frida + Burp**
+Set up a rooted emulator (Android Studio AVD) or a spare test phone, plus ADB, JADX, apktool, Burp Suite, and later Frida and Ghidra. No language study; just get the setup working.
 
 ---
 
-## 🔴 PHASE 4 — Native Android reversing
+## Stage 1: Reading APKs with JADX (week 1)
 
-Now you move beyond Java/Kotlin.
+**Goal:** find entry points, hardcoded secrets, validation logic and weak crypto without running anything.
 
-### 14. N4TIVE — Challenge 1
+- **CTFlearn: Basic Android RE 1** (easy, 5,350 solves). Files: ctflearn.com/challenge/962. Writeup: RemusDBD (finds an MD5 check in JADX).
+- **picoGym: droids0 and droids1.** Site: picoGym (search for droids0 and droids1; I did not get a direct URL). Guide with both solved: NUS Greyhats, Introduction to Android App Reversing.
+- **DroidDump** (beginner: resources and static analysis). Site: Learn SecByte CTF, the platform behind this walkthrough.
+- **Silent Data Exfiltration: WayneSecure, GothamConnect, SystemMonitor (2026).** Files: no direct link found. Writeup (names the three APKs): rehutalwar.com.
+- **GDG CTF 2026: Food.** Files: no direct link found. Writeup: GDG CTF 2026 writeup.
+- **OWASP UnCrackable L1.** Files: mas.owasp.org/crackmes/Android. Do it with JADX only first, then read these, which each use a different method:
+  - tksec: JADX, smali patching and Frida
+  - cygnus: smali patching and objection
+  - pentest.co.uk: Frida root-detection bypass
+  - HackerNoon walkthrough
+- **Hacky Holidays CTF: Pizza Pazzi 1 to 4** (medium). Files: no direct link found; the challenge came from the Hacky Holidays CTF. Writeup: CTFtime writeup 34706 (apktool, grep, base64 hunting).
 
-Learn:
-
-- `.so` libraries
-- JNI
-- ELF
-- ARM64
-- strings
-- XOR
-- native functions
-
-Then:
-
-### 15. N4TIVE — Challenge 2
-
-Then continue through:
-
-### 16. N4TIVE 3–6
-
-At this point your toolchain becomes:
-
-```text
-JADX
-  ↓
-APKTool
-  ↓
-Smali
-  ↓
-Ghidra
-  ↓
-ARM64
-  ↓
-Frida
-```
+**Skills you should have by the end:** manifest reading, finding MainActivity, following method calls, spotting string and hash checks, using apktool and grep.
 
 ---
 
-## 🟣 PHASE 5 — Serious Android RE
+## Stage 2: App pentesting fundamentals (weeks 2 to 3)
 
-Now attack:
+**Goal:** move from "where is the password" to "how does this app actually work". Cover exported components, intents, insecure storage, WebViews, logcat leaks, and traffic interception with Burp. Do one apktool patch, rebuild, sign and install exercise, and write one short pentest report.
 
-### 17. CyberTruck Challenge 2019
-
-Then:
-
-### 18. HeroCTF — Freeda Native Hook
-
-Then:
-
-### 19. Google CTF Android
-
-Then:
-
-### 20. OneList — harder challenges
-
-Then:
-
-### 21. Securinets Friendly CTF 2026
-
-**Do all 17 Mobile challenges.**
-
-This should be one of your major milestones because it's a modern Android CTF rather than an old crackme.
+- **OneList** (10 flags, beginner to expert). Files: github.com/cywr/android-re-ctfs. The repo accepts community writeups, so check it for existing ones.
+- **DIVA (Damn Insecure and Vulnerable App).** Files: payatu/diva-android (source; the README also points to a debug APK download). A prebuilt APK copy is at 0xArab/diva-apk-file.
+- **MASTG Hacking Playground.** Files: OWASP/MASTG-Hacking-Playground (Java and Kotlin apps). Other MASTG reference apps are on the index page.
+- **InsecureShop.** Files: hax0rgb/InsecureShop.
+- **AndroGoat, InjuredAndroid, Damn Vulnerable Bank, OVAA, Vuldroid, InsecureBankv2.** I did not get direct download pages; find all of them in the awesome-vulnerable-apps list.
+- **KGB Messenger** (Alerts, Login, Social Engineering; solve in order). Files: tlamb96/kgb_messenger. Its README links the APK download, a video lecture from George Mason University's MasonCC club and a video walkthrough with timestamps.
+- **MobileReversing walkthrough repo** with a suggested order (RagingRock, DIVA, InjuredAndroid, InsecureShop, Frida Labs, hpAndro): sam-mg/MobileReversing.
+- **Mobile Hacking Lab.** Site: Corellium training page for Mobile Hacking Lab (a free Android userland exploitation teaser lab; registration required). Writeups to check your work: mehmetfarisacar/Mobile-Hacking-Lab-Writeups.
+- **8kSec free mobile labs** (2025, includes 10 Android challenges). Site: 8ksec.io/battle. I have not found writeups for them.
+- **HacktivityCon CTF Mobile (MobileOne, Pinocchio).** Files: mobile_one.apk. Writeup: goggleheadedhacker.com. Pinocchio uses mitmproxy, so it doubles as a first traffic-interception exercise.
+- **BdSecCTF 2025: Hacker App.** Files: no direct link found. Writeup: 0x0meowsec (custom encoding chain: XOR, TEA, byte table, Base64).
+- **Securinets Friendly CTF 2025, mobile folder.** Files: securinets-insat/Friendly-CTF-2025. I found no mobile writeups yet. I could not verify a 2026 edition or a count of 17 mobile challenges.
 
 ---
 
-## ⚫ PHASE 6 — Advanced protection
+## Stage 3: Frida, in small steps
 
-Finally:
+**Goal:** hook methods, bypass root and Frida detection, dump keys at runtime, and call hidden methods.
 
-### 22. OWASP UnCrackable L4
-
-Study:
-
-- obfuscation
-- anti-debugging
-- anti-tampering
-- native code
-- runtime protections
-- cryptography
-- Frida bypasses
-
-At this point you're no longer simply learning "how to use JADX."
-
-You're doing **actual Android reverse engineering**.
+- Redo **UnCrackable L1 with Frida** using the tksec and pentest.co.uk writeups from Stage 1.
+- **UnCrackable L2** (Java plus a small native part). Files: mas.owasp.org/crackmes/Android.
+- **PwnSec CTF 2025: CuteFrida, RudeFrida, FreakyFrida.** All three are designed for Frida; RudeFrida needs library reversing plus root and Frida detection bypass. Event site: pwnsec.ctf.ae and CTFtime event 2906. I found no direct file links, so check those two pages. Writeups:
+  - bi0s: RudeFrida
+  - Handoumeh: RudeFrida
+  - zeroflag: RudeFrida
+- **PwnSec CTF 2024 mobile: FireStorm and Snake** (hard). FireStorm needs Frida to force a hidden Password() method and then a Firebase login; Snake combines anti-root, anti-Frida and anti-ptrace checks with a SnakeYAML issue. Same event sites as above. Writeups: FireStorm, Snake (writeup 1) and Snake (writeup 2). These are written partly in French.
+- **bi0s writeup index.** The same blog lists writeups for Squirrel CTF (DROID), Shakti CTF (nowyouseeme), ByuCTF (baby-android-2) and Cyberchaze CTF (Capture Me, Firmware). Start from the RudeFrida page and follow its sidebar.
+- **Frida debugging case study** (recent): why a hook on the java.lang.String constructor installed but never fired. Article.
+- **Frida techniques overview** (hooks, root and SSL pinning bypass, key dumping). Article.
+- **Frida CodeShare scripts** to study and adapt: multiple bypass and fridantiroot. Read them before running them.
 
 ---
 
-## Your complete sequence
+## Stage 4: Native reversing (ARM64, JNI, Ghidra)
 
-```text
-                 ANDROID RE
-                     │
-                     ▼
-             ┌──────────────┐
-             │  PHASE 1     │
-             │     JADX      │
-             └──────┬───────┘
-                    │
-      L1 → BPVA 0 → VulnDroid
-                    │
-                    ▼
-             ┌──────────────┐
-             │  PHASE 2     │
-             │ Android RE    │
-             └──────┬───────┘
-                    │
-       DIVA → AndroGoat → MASTG
-                    │
-                    ▼
-             ┌──────────────┐
-             │  PHASE 3     │
-             │    Frida      │
-             └──────┬───────┘
-                    │
-             L2 → L3 → BPVA
-                    │
-                    ▼
-             ┌──────────────┐
-             │  PHASE 4     │
-             │ Native / ARM  │
-             └──────┬───────┘
-                    │
-              N4TIVE 1 → 6
-                    │
-                    ▼
-             ┌──────────────┐
-             │  PHASE 5     │
-             │ Advanced RE   │
-             └──────┬───────┘
-                    │
-     CyberTruck → HeroCTF → Google CTF
-                    │
-                    ▼
-             Securinets 2026
-                    │
-                    ▼
-             ┌──────────────┐
-             │  PHASE 6     │
-             │ Hard Android  │
-             └──────┬───────┘
-                    │
-             UnCrackable L4
-```
+Prepare first: learn JNI and ELF basics and practice Ghidra on small binaries. Learn ARM64 instructions as Ghidra shows them to you, starting with function calls, loops, and XOR.
 
-## The most important rule
+- **MASTG chapter: Reverse Engineering and Tampering** (native libraries, JNIEnv, disassembly). Read it.
+- **UMassCTF 2024: Free Delivery** (medium; malware obfuscation, static and dynamic analysis, native library). Event site: umasscybersec.org; I found no direct file link. Writeups: powalll on GitHub and a short solution on CTFtime (base64 plus XOR in Java, then a XOR-0x55 string in libfreedelivery.so).
+- **IntechCTF Android category** (flag, JNI, OAT, reflection, sign). Files: the writeup credits aimardcr as problem setter and says the challenges are on a repository; I found only his profile, github.com/aimardcr, so look there. Writeups: Part 1 and Part 2: Game. Medium may paywall these.
+- **UMass CTF 2026: Android ARM64** (medium-hard; stripped ARM64 library liblegocore.so, dynamic JNI registration, a custom VM, red herrings). Files: the pwn.college CTF archive for UMassCTF 2026 lists the challenge zips (for example lego-clicker.zip); I did not confirm which one is the Android challenge. Writeup: Wa3r on Medium.
+- **Nullcon Goa 2023 workshop: ARM-ing for Android.** An intro to ARM assembly plus four Android apps. This is the workshop description, not a download: nullcon.net.
+- **CTFlearn: Android, run!** (hard, 140 points). Files: challenge page. The APK is on a mega.nz link there that may have expired.
 
-**Don't watch the solution first.**
+---
 
-For every challenge:
+## Stage 5: Real CTF-level and modern targets
 
-1. Download APK.
-2. Open in JADX.
-3. Spend **60–90 minutes** trying to understand it.
-4. Write down your hypothesis.
-5. Try to solve it.
-6. If stuck, inspect the official writeup.
-7. Reproduce the solution yourself.
-8. Write your own notes.
-9. Move on.
+- **CyberTruck Challenge 2019** (NowSecure; keyless car app; Jadx, Frida, APKTool and Ghidra across Java and native layers). Files: nowsecure/cybertruckchallenge19. Background: NowSecure page. Writeup: user1342 on GitHub.
+- **Google CTF 2020: Android.** Files: google/google-ctf, 2020 quals reversing-android. Writeup: luker983.
+- **Google CTF 2017: Food** (native code in libcook.so; old and hard for its era). Files and writeup together: CTFtime writeup 6870 (its folder lists food.apk).
+- **FamPay CTF 2026** (APK plus web target; native library, Firebase, cloud instance). Site: ctf.fampay.co, which may be offline. Writeup: bhatsupshubham on Medium. I found no standalone APK link.
+- **SECCON 2015: Reverse-Engineering Android APK 2** (hard; includes a server-side SQL injection part, so it may not run today). Writeup: CTFtime writeup 3394. Optional.
+- More classic challenge files, from the awesome-mobile-ctf lists: Trend Micro CTF 2020 Keybox.apk, DEF CON 2019 quals Matryoshka-style challenge, THC CTF 2018 Android serial and a collection of Android reversing challenges.
 
-## Per-challenge notes layout (for later)
+---
 
-When you start solving, give each challenge its own folder:
+## Stage 6: Hard protections
 
-```text
-android-re/
-│
-├── 01-uncrackable-l1/
-│   ├── notes.md
-│   ├── screenshots/
-│   └── solution.md
-│
-├── 02-bpva-0/
-│   └── notes.md
-│
-├── 03-vulndroid/
-│   ├── level-01/
-│   ├── level-02/
-│   └── level-03/
-│
-├── 04-diva/
-│
-├── 05-androgoat/
-│
-├── 06-uncrackable-l2/
-│
-├── 07-uncrackable-l3/
-│
-├── 08-n4tive/
-│
-└── 09-advanced/
-```
+- **OWASP UnCrackable L3** ("the crackme from hell"): MASTG page.
+- **OWASP UnCrackable L4 (r2Pay).** Start with v0.9 (source available, softened); v1.0 is the R2con CTF 2020 version with no source and many extra protections. MASTG page.
+- Study obfuscation, anti-debugging, anti-tampering, anti-Frida techniques and white-box cryptography here.
 
-**Your immediate starting point is just one thing: OWASP UnCrackable L1.** Don't install Frida, Ghidra, or 20 other tools yet. Learn to squeeze as much information as possible out of **JADX + the APK itself** first.
+---
+
+## Videos and courses
+
+I could not get verified direct YouTube video URLs from my searches, because they returned only video titles. Rather than guess links that may be dead, here is what to search for, taken from the curated list Awesome-Android-Reverse-Engineering:
+
+- Maddie Stone's Android Reverse Engineering training (marked a top pick on that list). Search her name plus the course title.
+- Kristina Balaam: a video series on RE basics and Android malware.
+- LaurieWired: a YouTube channel on Android reverse engineering.
+- "Using Frida To Modify Android Games | Mobile Dynamic Instrumentation".
+- Blue Fox: Arm Assembly Internals and Reverse Engineering: ARM foundations for Stage 4.
+
+Search YouTube for: "OWASP UnCrackable Level 1 walkthrough", "OWASP UnCrackable Level 2 walkthrough", "Frida hooking Android basics".
+
+One verified video route: the KGB Messenger repo links a video lecture from George Mason University's MasonCC club and a video walkthrough with spoiler-free timestamps. Open the README for the links.
+
+Once you give me a stage, I can search for videos for that stage specifically.
+
+---
+
+## More lists to mine
+
+- awesome-mobile-ctf: Google CTF 2020 and 2021, HacktivityCon, STACK the Flags 2020, BSidesSF 2018, SharifCTF and more.
+- awesome-android-security: Hacker101 Android, Rednaga challenges and crackme collections.
+- The Mobile CTF Lab: updated 2024 list of CTFs, writeups and vulnerable apps.
+- pentest-bi0s/Mobile-CTFs on GitHub: described as Android and iOS mobile CTF challenges and writeups from 2025 onwards. I saw the repo name but not a direct URL, so search GitHub for it.
+
+---
+
+## Caveats
+
+- Older writeups use older Frida and Android versions. Expect to adapt scripts (the RudeFrida author used Frida 16).
+- Newer CTFs usually host files in the organizers' GitHub or on CTFtime, not in the writeup. If a download link is missing, search the CTF name there.
+- Some beginner CTF items are solvable with strings and grep. Use them as warm-up, not as proof of skill.
+- N4TIVE and a Securinets "2026, 17 challenges" item from the first draft of this roadmap did not show up in my searches, so I left them out.
+- Medium pages sometimes hit a paywall; try a private window.
 
 ---
 
