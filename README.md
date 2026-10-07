@@ -49,6 +49,7 @@ flowchart TB
     subgraph SUPPORTING ["🧰 — Supporting Skills"]
         MET["⬜ Android Hacking Methodology"]
         LAB["⬜ Lab Setup"]
+        REL["⬜ RE Challenge Ladder"]
     end
 
     D1 --- 01_STATIC_ANALYSIS
@@ -71,6 +72,7 @@ flowchart TB
     click AUT href "./04-platform-apis/auth-session.md"
     click MET href "./supporting/methodology.md"
     click LAB href "./supporting/lab-setup.md"
+    click REL href "./supporting/re-challenge-ladder.md"
 ```
 
 ### Legend
@@ -154,6 +156,7 @@ flowchart TB
 |--------|:-----:|:------:|:-----:|
 | [Android Hacking Methodology](./supporting/methodology.md) | — | ⬜ | [📖](./supporting/methodology.md) |
 | [Lab Setup (Emulator, Root, Tooling)](./supporting/lab-setup.md) | — | ⬜ | [📖](./supporting/lab-setup.md) |
+| [RE Challenge Ladder](./supporting/re-challenge-ladder.md) | — | ⬜ | [📖](./supporting/re-challenge-ladder.md) |
 
 
 ## 🧭 Suggested Order

@@ -10,6 +10,7 @@
 |--------|:-----:|:------:|:-----:|
 | [Android Hacking Methodology](./methodology.md) | — | ⬜ | [📖](./methodology.md) |
 | [Lab Setup (Emulator, Root, Tooling)](./lab-setup.md) | — | ⬜ | [📖](./lab-setup.md) |
+| [RE Challenge Ladder](./re-challenge-ladder.md) | — | ⬜ | [📖](./re-challenge-ladder.md) |
 
 ## 🎯 Domain Goal
 
